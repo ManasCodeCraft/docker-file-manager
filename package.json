@@ -7,7 +7,7 @@
   "author": "Manas Srivastava manassrivastava567@gmail.com",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/docker-file-manager.git"
+    "url": "git+https://github.com/ManasCodeCraft/docker-file-manager.git"
   },
   "dependencies": {
     "dockerode": "^4.0.2"
