@@ -1,4 +1,5 @@
 import Docker from 'dockerode';
+import * as os from 'os';
 
 interface DockerOptions {
     socketPath?: string;
@@ -48,20 +49,21 @@ class DockerFileManager {
         });
     }
 
-    private async detectPlatform(): Promise<'linux' | 'macos' | 'windows'> {
-        try {
-            const platform = await this.execCommand('uname');
-            if (platform.trim().toLowerCase() === 'darwin') {
-                return 'macos';
-            } else if (platform.trim().toLowerCase() === 'linux') {
-                return 'linux';
-            }
-        } catch (err) {
-            console.error(`Failed to detect platform: ${err.message}`);
+private async detectPlatform(): Promise<'linux' | 'macos' | 'windows'> {
+    try {
+        const platform = os.platform();
+        if (platform === 'darwin') {
+            return 'macos';
+        } else if (platform === 'linux') {
+            return 'linux';
+        } else if (platform === 'win32') {
+            return 'windows';
         }
-        // Fallback to default behavior (assuming Linux)
-        return 'linux';
+    } catch (err) {
+        console.error(`Failed to detect platform: ${err.message}`);
     }
+    return 'linux';
+}
 
     async writeFile(filePath: string, content: string = ''): Promise<boolean> {
         try {
