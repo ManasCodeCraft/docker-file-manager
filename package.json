@@ -1,6 +1,6 @@
 {
   "name": "docker-file-manager",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A library for managing files and folders within Docker containers.",
   "main": "lib/DockerFileManager.js",
   "license": "MIT",
